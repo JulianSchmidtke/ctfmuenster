@@ -1,7 +1,7 @@
 import './HistoryEntryControl.css';
 import UserFlag from '../models/UserFlag';
 import { IonIcon } from '@ionic/react';
-import { flagOutline } from 'ionicons/icons';
+import { flagOutline, medalOutline } from 'ionicons/icons';
 
 
 export interface HistoryEntryProps {
@@ -28,7 +28,7 @@ const HistoryEntryControl: React.FC<HistoryEntryProps> = props => {
       <div style={{display: 'flex'}}>
         
         <div className='points'>{userFlag.score}</div>
-        <div style={{marginTop: '10px', marginLeft: '3px'}}>Punkte</div>
+        <IonIcon style={{marginTop: '10px', marginLeft: '3px'}} icon={medalOutline}></IonIcon>
         <div style={{display: 'flex', justifyContent: 'end', flex: 1, marginTop: '10px'}}>
           <IonIcon icon={flagOutline}></IonIcon>
           <div className='dateTime'>
