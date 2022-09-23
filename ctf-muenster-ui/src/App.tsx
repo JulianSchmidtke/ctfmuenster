@@ -10,10 +10,11 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { mapOutline, trophyOutline, personOutline, listOutline } from 'ionicons/icons';
+import MapTab from './pages/MapTab';
+import HistoryTab from './pages/HistoryTab';
+import LeaderboardTab from './pages/LeaderboardTab';
+import UserTab from './pages/UserTab';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,31 +42,39 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route path="/map">
+            <MapTab />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route path="/leaderboard">
+            <LeaderboardTab />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/history">
+            <HistoryTab />
+          </Route>
+          <Route path="/user">
+            <UserTab />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/map" />
           </Route>
         </IonRouterOutlet>
+
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="map" href="/map">
+            <IonIcon icon={mapOutline} />
+            <IonLabel>Karte</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="leaderboard" href="/leaderboard">
+            <IonIcon icon={trophyOutline} />
+            <IonLabel>Rangliste</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="history" href="/history">
+            <IonIcon icon={listOutline} />
+            <IonLabel>History</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="user" href="/user">
+            <IonIcon icon={personOutline} />
+            <IonLabel>Benutzer</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
