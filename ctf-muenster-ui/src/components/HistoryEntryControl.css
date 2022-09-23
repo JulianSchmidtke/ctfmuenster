@@ -1,0 +1,9 @@
+.historyEntry {
+    width: 300px;
+    height: 100px;
+    background-color: red;
+    border-radius: 5px;
+    margin-inline: 30px;
+    margin-block: 10px;
+    padding: 10px;
+}
