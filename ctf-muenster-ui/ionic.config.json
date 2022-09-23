@@ -1,0 +1,7 @@
+{
+  "name": "ctf-muenster-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
