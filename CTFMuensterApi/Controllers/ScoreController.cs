@@ -10,30 +10,24 @@ namespace CTFMuensterApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase
+public class ScoreController : ControllerBase
 {
     private readonly IDataService _dataService;
 
-    private readonly ILogger<UserController> _logger;
+    private readonly ILogger<ScoreController> _logger;
 
-    public UserController(ILogger<UserController> logger, IDataService dataService)
+    public ScoreController(ILogger<ScoreController> logger, IDataService dataService)
     {
         _logger = logger;
         _dataService = dataService;
 
     }
 
-    [HttpGet]
-    public IEnumerable<User> Get()
-    {
-        return _dataService.GetUsers();
-    }
 
     [HttpGet]
-    [Route("{id}")]
-    public User GetUser(Guid id)
+    public IEnumerable<Score> GetScore([FromQuery(Name = "since")] DateTimeOffset? since)
     {
-        return _dataService.GetUser(id);
+        return _dataService.GetScores(since);
     }
 
     [HttpGet]

@@ -27,22 +27,26 @@ namespace CTFMuensterApi.Data {
             return data.MockFlags.First(x => x.Id == id);
         }
 
+        public IEnumerable<Flag> GetFlag(DateTimeOffset dateTimeOffset) {
+            return data.MockFlags.Where(x => dateTimeOffset > x.DateTimeStartActive && dateTimeOffset < x.DateTimeEndActive);
+        }
+
         public IEnumerable<Flag> GetFlags() {
             return data.MockFlags;
         }
 
         public IEnumerable<UserFlag> GetFlagsPerUser(Guid userId) {
-            return data.MockUserFlags.Where(x => x.User.Id == userId);
+            return data.MockUserFlags.Where(x => x.UserId == userId);
         }
 
         public IEnumerable<UserFlag> GetFlagsPerUser(Guid userId, Guid flagId)
         {
-            return data.MockUserFlags.Where(x => x.User.Id == userId && x.Flag.Id == flagId);
+            return data.MockUserFlags.Where(x => x.UserId == userId && x.FlagId == flagId);
         }
 
         public IEnumerable<UserFlag> GetUsersPerFlag(Guid flagId)
         {
-            return data.MockUserFlags.Where(x => x.Flag.Id == flagId);
+            return data.MockUserFlags.Where(x => x.FlagId == flagId);
         }
 
         public IEnumerable<UserFlag> GetUserFlags()
@@ -60,9 +64,42 @@ namespace CTFMuensterApi.Data {
             if(maxUsers < 1) {
                 throw new ArgumentOutOfRangeException();
             }
-            return data.MockUserFlags.Where(x => x.DateTimeCollected > minimumDate && x.DateTimeCollected < maximumDate).Chunk(maxUsers).FirstOrDefault(Array.Empty<UserFlag>());
+            return data.MockUserFlags.Where(x => x.DateTimeCollected > minimumDate && x.DateTimeCollected < maximumDate).Chunk(maxUsers).FirstOrDefault(Array.Empty<UserFlag>()).OrderBy(x => x.Score); // zweite sortierung nach datum oder alphabet
         }
 
+        Flag IDataService.GetFlag(DateTimeOffset dateTimeOffset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Score> GetScores(DateTimeOffset? since)
+        {
+            if(since != null) {
+                    var users = data.MockUsers;
+                    var flags = data.MockFlags;
+                    var userflags = data.MockUserFlags;
+
+                    userflags.Where(x => since <= x.DateTimeCollected).GroupBy(x => x.UserId).Select(u => new{
+                        UserId = u,
+                        Score = u.Sum(s => s.Score),
+                        Count = u.Count()
+                    });
+                    // var results = from uf in userflags
+                    //     group uf by uf.UserId into g 
+                    //     select ()
+
+                    
+
+                    // flags = flags.Where(x => since < x.DateTimeStartActive).GroupBy(x => ) Aggregate
+                    // foreach(UserFlag userFlag in userflags.Where())
+                    // {
+                    //     if(flags.Where(x => since <= x.DateTimeStartActive).Id)
+                    // }
+                return null;
+            }else{
+                return null;
+            }
+        }
     }
 
 
@@ -112,18 +149,18 @@ namespace CTFMuensterApi.Data {
             {
                 new UserFlag(){
                     Id=new Guid(),
-                    User=MockUsers[0],
-                    Flag=MockFlags[0],
+                    UserId=MockUsers[0].Id,
+                    FlagId=MockFlags[0].Id,
                     Score=10},
                 new UserFlag(){
                     Id=new Guid(),
-                    User=MockUsers[0],
-                    Flag=MockFlags[1],
+                    UserId=MockUsers[0].Id,
+                    FlagId=MockFlags[1].Id,
                     Score=20},
                 new UserFlag(){
                     Id=new Guid(),
-                    User=MockUsers[1],
-                    Flag=MockFlags[1],
+                    UserId=MockUsers[1].Id,
+                    FlagId=MockFlags[1].Id,
                     Score=50},
             };
         }

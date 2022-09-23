@@ -11,6 +11,8 @@ namespace CTFMuensterApi.Data {
 
         public Flag GetFlag(Guid id);
 
+        public Flag GetFlag(DateTimeOffset dateTimeOffset);
+
         public IEnumerable<Flag> GetFlags();
 
         public IEnumerable<UserFlag> GetFlagsPerUser(Guid userId);
@@ -22,5 +24,7 @@ namespace CTFMuensterApi.Data {
         public UserFlag CreateUserFlag(UserFlag userFlag);
         
         public IEnumerable<UserFlag> GetPoints(int maxUsers, DateTimeOffset minimumDate, DateTimeOffset maximumDate);
+
+        public IEnumerable<Score> GetScores(DateTimeOffset? since);
     }
 }
