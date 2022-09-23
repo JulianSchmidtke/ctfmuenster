@@ -1,3 +1,5 @@
+using System;
+
 namespace CTFMuenster.Api.Model
 {
     public class User {

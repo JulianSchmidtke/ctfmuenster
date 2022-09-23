@@ -1,3 +1,6 @@
+
+using System;
+
 namespace CTFMuenster.Api.Model
 {
     public class Flag {
@@ -5,8 +8,8 @@ namespace CTFMuenster.Api.Model
         public String FlagName {get; set;}
         public String Description {get; set;} 
         public Location Location {get; set;} 
-        
         public Tag[] Tags {get; set;}
-    }
-    
+        public DateTimeOffset DateTimeStartActive { get; set; }
+        public DateTimeOffset DateTimeEndActive { get; set;}
+    }   
 }

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/61b595fa-ef88-4ad8-93eb-3a8b506c9903/AppServices/subscriptions/61b595fa-ef88-4ad8-93eb-3a8b506c9903/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/app-ctfmuenster-api",
+    "appService.deploySubpath": "CTFMuensterApi"
+}

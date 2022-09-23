@@ -1,0 +1,15 @@
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\CTFMuensterApi.exe
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\appsettings.Development.json
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\appsettings.json
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\CTFMuensterApi.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\CTFMuensterApi.deps.json
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\CTFMuensterApi.runtimeconfig.json
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\CTFMuensterApi.pdb
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Microsoft.EntityFrameworkCore.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Microsoft.OpenApi.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\sbran\repos\ctfmuenster-1\CTFMuensterApi\bin\Release\net6.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
