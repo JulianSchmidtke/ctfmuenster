@@ -8,7 +8,7 @@ public class DummyData : IDataRepository
         internal readonly User[] MockUsers;
         internal readonly UserFlag[] MockUserFlags;
 
-        internal DummyData()
+        public DummyData()
         {
             MockFlags = new[]
             {
