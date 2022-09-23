@@ -3,7 +3,7 @@ namespace CTFMuenster.Api.Model{
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
-        public Location(double latitude, double longitude)
+        public Location(double longitude, double latitude)
         {
             Latitude = latitude;
             Longitude = longitude;
