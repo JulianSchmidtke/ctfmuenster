@@ -9,9 +9,5 @@ export default interface Flag {
         longitude: number
     };
     dateTimeEndActive: Date;
-}
-
-export default interface Location {
-    latitude: number,
-    longitude: number
+    dateTimeStartActive: Date;
 }

@@ -26,7 +26,7 @@ function Item(data: any) {
                     <IonRow key={index}>
                         <IonCol>{index}</IonCol>
                         <IonCol>
-                            <Gravatar email={value.user.userName + '@gmail.com'} />
+                            <Gravatar className='userIcon' email={value.user.userName + '@gmail.com'} />
                             <br />
                             {value.user.userName}
                         </IonCol>
@@ -76,11 +76,8 @@ class LeaderboardContainer extends React.Component {
     }
 
 
-    handleClick = (e: BaseSyntheticEvent) => {
-        this.setState({
-            period: e.target.dataset.id
-        })
-
+    handleClick = (period: number) => {
+        this.setState({ period: period })
     }
 
     render() {
@@ -88,12 +85,13 @@ class LeaderboardContainer extends React.Component {
 
         return(
             <div className = "board" >
-                <h1 className='leaderboard'>Leaderboard</h1>
+                <h1 className='leaderboard'>Rangliste</h1>
     
                 <div className="duration">
-                    <button onClick={this.handleClick} data-id='7'>7 Days</button>
-                    <button onClick={this.handleClick} data-id='30'>30 Days</button>
-                    <button onClick={this.handleClick} data-id='0'>All-Time</button>
+                    <button onClick={() => this.handleClick(1)}>1 Tag</button>
+                    <button onClick={() => this.handleClick(7)}>7 Tage</button>
+                    <button onClick={() => this.handleClick(30)}>30 Tage</button>
+                    <button onClick={() => this.handleClick(0)}>Immer</button>
                 </div>
     
     
@@ -102,7 +100,7 @@ class LeaderboardContainer extends React.Component {
                         <IonRow className = "col-header">
                             <IonCol>Rang</IonCol>
                             <IonCol>Name</IonCol>
-                            <IonCol>Punkte ges</IonCol>
+                            <IonCol>Punkte</IonCol>
                             <IonCol>Flags</IonCol>
                         </IonRow>
                     </IonGrid>

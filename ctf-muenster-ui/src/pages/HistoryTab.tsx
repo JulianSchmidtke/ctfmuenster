@@ -18,15 +18,14 @@ const HistoryTab: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const userFlags: UserFlag[] = await UserSerivce.getUserFlags(Guid.parse("e59871b2-5970-4f04-b1cd-42a0796a5279"))
-
+      console.log(userFlags)
       let historyEntryControlsTemp: JSX.Element[] = [];
-      let i = 0;
-      userFlags.forEach(userFlag => {
 
-        //const flagName: string = await FlagService.getFlag(userFlag.)
+      for (let i = 0; i < userFlags.length; i++) {
+        const flagName: string = (await FlagService.getFlag(userFlags[i].flagId)).flagName;
 
-        historyEntryControlsTemp.push(<HistoryEntryControl key={i++} userFlag={userFlag}/>);
-      });
+        historyEntryControlsTemp.push(<HistoryEntryControl key={i} userFlag={userFlags[i]} flagName={flagName}/>);
+      }
 
       setHistoryEntryControls(historyEntryControlsTemp);
     };

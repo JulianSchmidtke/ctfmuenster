@@ -11,7 +11,7 @@ const LeaderboardTab: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Leaderboard</IonTitle>
+            <IonTitle size="large">Rangliste</IonTitle>
           </IonToolbar>
         </IonHeader>
         <LeaderboardContainer/>
