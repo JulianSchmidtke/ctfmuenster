@@ -9,6 +9,7 @@ export class UserSerivce {
   public static async getUserDetails(id: Guid): Promise<UserDetail> {
     const userResponse = await fetch(`https://app-ctfmuenster-api2.azurewebsites.net/Score/${id}/`)
     const user = await userResponse.json()
+    console.log(user)
     return user as UserDetail;
   }
 
