@@ -1,5 +1,6 @@
 using CTFMuenster.Api.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 
 namespace CTFMuensterApi.Controllers;
 
@@ -7,9 +8,26 @@ namespace CTFMuensterApi.Controllers;
 [Route("[controller]")]
 public class FlagController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
+    public static readonly Flag[] Flags = new[]
     {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        new Flag(){
+            Id=new Guid("d404eed3-5842-4d45-84b5-dce00b015dac"), 
+            Description="Prinzipalmarkt",
+            FlagName="Prinzipalmarkt",
+            Location= new Location(51.962776004909124, 7.6282566472538615),
+            Tags= Array.Empty<Tag>()},
+        new Flag(){
+            Id=new Guid("76d4fc1a-643c-4ec7-a876-a14cdec0980c"), 
+            Description="Buddenturm",
+            FlagName="Buddenturm",
+            Location= new Location(51.96626699838519, 7.623065882679778),
+            Tags=Array.Empty<Tag>()},
+        new Flag(){
+            Id=new Guid("ba529460-c0a1-428d-9239-9ae3442e18fb"), 
+            Description="Davidwache",
+            FlagName="Davidwache",
+            Location= new Location(51.96646017686706, 7.6182496299172575),
+            Tags=Array.Empty<Tag>()}
     };
 
     private readonly ILogger<FlagController> _logger;
@@ -19,15 +37,16 @@ public class FlagController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetFlag")]
+    [HttpGet]
     public IEnumerable<Flag> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new Flag
-        {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        return Flags;
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public Flag GetFlag(Guid id)
+    {
+        return Flags.Where(x => x.Id == id).First();
     }
 }

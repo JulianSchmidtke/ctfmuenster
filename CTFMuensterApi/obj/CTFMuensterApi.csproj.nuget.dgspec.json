@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sbran\\repos\\ctfmuenster\\CTFMuensterApi\\CTFMuensterApi.csproj": {}
+    "C:\\Users\\sbran\\repos\\ctfmuenster-1\\CTFMuensterApi\\CTFMuensterApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sbran\\repos\\ctfmuenster\\CTFMuensterApi\\CTFMuensterApi.csproj": {
+    "C:\\Users\\sbran\\repos\\ctfmuenster-1\\CTFMuensterApi\\CTFMuensterApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sbran\\repos\\ctfmuenster\\CTFMuensterApi\\CTFMuensterApi.csproj",
+        "projectUniqueName": "C:\\Users\\sbran\\repos\\ctfmuenster-1\\CTFMuensterApi\\CTFMuensterApi.csproj",
         "projectName": "CTFMuensterApi",
-        "projectPath": "C:\\Users\\sbran\\repos\\ctfmuenster\\CTFMuensterApi\\CTFMuensterApi.csproj",
+        "projectPath": "C:\\Users\\sbran\\repos\\ctfmuenster-1\\CTFMuensterApi\\CTFMuensterApi.csproj",
         "packagesPath": "C:\\Users\\sbran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sbran\\repos\\ctfmuenster\\CTFMuensterApi\\obj\\",
+        "outputPath": "C:\\Users\\sbran\\repos\\ctfmuenster-1\\CTFMuensterApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
