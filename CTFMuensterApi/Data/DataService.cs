@@ -64,7 +64,7 @@ namespace CTFMuensterApi.Data
 
         public UserFlag CreateUserFlag(UserFlag userFlag)
         {
-            throw new NotImplementedException();
+            return data.AddUserFlag(userFlag);
         }
 
         public IEnumerable<UserFlag> GetPoints(int maxUsers, DateTimeOffset minimumDate, DateTimeOffset maximumDate)

@@ -4,13 +4,13 @@ using CTFMuensterApi.Data;
 public class DummyData : IDataRepository
     {
 
-        internal readonly Flag[] MockFlags;
-        internal readonly User[] MockUsers;
-        internal readonly UserFlag[] MockUserFlags;
+        private List<Flag> MockFlags;
+        private List<User> MockUsers;
+        private List<UserFlag> MockUserFlags;
 
         public DummyData()
         {
-            MockFlags = new[]
+            MockFlags = new List<Flag>
             {
                 new Flag(){
                     Id=new Guid("d404eed3-5842-4d45-84b5-dce00b015dac"),
@@ -32,7 +32,7 @@ public class DummyData : IDataRepository
                     Tags=Array.Empty<Tag>()}
             };
 
-            MockUsers = new[]
+            MockUsers = new List<User>
             {
                 new User(){
                     Id=new Guid("e59871b2-5970-4f04-b1cd-42a0796a5279"),
@@ -45,7 +45,7 @@ public class DummyData : IDataRepository
                     UserName="Christian"},
             };
 
-            MockUserFlags = new[]
+            MockUserFlags = new List<UserFlag>
             {
                 new UserFlag(){
                     Id=new Guid(),
@@ -68,7 +68,13 @@ public class DummyData : IDataRepository
             };
         }
 
-        public IEnumerable<Flag> GetFlags()
+    public UserFlag AddUserFlag(UserFlag userFlag)
+    {
+        MockUserFlags.Add(userFlag);
+        return userFlag;
+    }
+
+    public IEnumerable<Flag> GetFlags()
         {
             return MockFlags;
         }

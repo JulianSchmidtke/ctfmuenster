@@ -10,5 +10,7 @@ namespace CTFMuensterApi.Data {
         public IEnumerable<Flag> GetFlags();
         public IEnumerable<UserFlag> GetUserFlags();
 
+        public UserFlag AddUserFlag(UserFlag userFlag);
+
     }
 }
