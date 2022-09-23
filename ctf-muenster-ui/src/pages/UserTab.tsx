@@ -1,6 +1,7 @@
 import { 
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonItem, 
-  IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel
+  IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel,
+  IonButton, IonRippleEffect
 } from '@ionic/react';
 import HeaderContainer from '../components/HeaderContainer';
 import { UserSerivce } from '../services/UserService';
@@ -12,7 +13,7 @@ import { Guid } from "guid-typescript";
 class UserTab extends React.Component {
   state = {
     userDetails: null,
-    loading: false
+    loading: true
   }
 
   componentDidMount() {
@@ -20,8 +21,7 @@ class UserTab extends React.Component {
       loading: true
     })
 
-    UserSerivce.getUserDetails(Guid.parse("e59871b2-5970-4f04-b1cd-42a0796a5279")).then(user => {
-      console.log(user)
+    UserSerivce.getUserDetails(UserSerivce.getStdUserId()).then(user => {
       this.setState({
         userDetails: user,
         loading: false
@@ -34,17 +34,16 @@ class UserTab extends React.Component {
 
     console.log(userDetails, loading)
 
-    if (!loading) {
+    if (loading) {
       return (
         <IonPage>
           <HeaderContainer title="Benutzer" />
           <IonContent fullscreen>
+            Loading
           </IonContent>
         </IonPage>
       )
     }
-
-    
 
     return (
       <IonPage>
@@ -59,9 +58,8 @@ class UserTab extends React.Component {
             </IonCardHeader>
 
             <IonCardContent> 
-              {
-                `ID: ${userDetails.user.id}\n Benutzername: ${userDetails.user.userName}`
-              }
+              ID: {userDetails.user.id} <br />
+              Benutzername: {userDetails.user.userName}
             </IonCardContent>
           </IonCard>
 
@@ -71,10 +69,18 @@ class UserTab extends React.Component {
             </IonCardHeader>
               
             <IonCardContent> 
-              {
-                `Anzahl Punkte: ${userDetails.score}\n Gefundene Flags: ${userDetails.flagcount}`
-              }
+              Punkteanzahl: {userDetails.scoreCount | 0} <br />
+              Gefundene Flaggen: {userDetails.flagCount | 0}
             </IonCardContent>
+          </IonCard>
+
+          <IonCard>
+            <div className="ion-activatable ripple-parent">
+              <IonCardHeader>
+                <IonTitle>Flag Einreichen</IonTitle>
+              </IonCardHeader>
+              <IonRippleEffect></IonRippleEffect>
+            </div>
           </IonCard>
         </IonContent>
       </IonPage>

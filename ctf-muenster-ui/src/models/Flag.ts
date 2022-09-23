@@ -4,7 +4,10 @@ export default interface Flag {
     id: Guid;
     flagName: string;
     description: string;
-    location: Location;
+    location: {
+        latitude: number,
+        longitude: number
+    };
     dateTimeEndActive: Date;
 }
 

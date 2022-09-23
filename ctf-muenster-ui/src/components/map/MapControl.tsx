@@ -1,10 +1,11 @@
 import './MapControl.css';
 
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer} from 'react-leaflet'
 import { RouteComponentProps, withRouter } from 'react-router';
 import React from 'react'
 import { FlagService } from '../../services/FlagService';
 import Flag from '../../models/Flag';
+import {Icon} from './Icon';
 import { Guid } from 'guid-typescript'
 
 type MapParams = { id: string }
@@ -15,30 +16,29 @@ type MapState = {
   lat_pos: number;
   zoom: number;
   flag: Flag | undefined;
-  flag_exists: boolean;
 }
 
 class MapControl extends React.Component<MapProps, MapState>{
   state: MapState = {
     lng_pos: 51.9503535,
     lat_pos: 7.638635,
-    zoom: 20,
+    zoom: 12,
     flag: undefined
   }
 
   componentDidMount(): void {
     var flagId = this.props.match.params.id;
     if (Guid.isGuid(flagId)) {
-      FlagService.getFlag(flagId).then(flag => {
+      FlagService.getFlag(flagId).then(flagObj => {
         this.setState({
-          flag: flag
+          flag: flagObj
         })
       })
     }
   }
 
   render(): React.ReactNode {
-    var { lng_pos, lat_pos, zoom, flag, flag_exists } = this.state
+    var { lng_pos, lat_pos, zoom, flag } = this.state
     return (
       <MapContainer style={{ height: "80vh", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
         <TileLayer
@@ -46,11 +46,14 @@ class MapControl extends React.Component<MapProps, MapState>{
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {
-          flag && <Marker position={[flag.longitude, flag.latitude]} />
+          flag != undefined && <Marker position={[flag.location.longitude, flag.location.latitude]} >
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
         }
       </MapContainer >
     )
   }
 };
-
 export default withRouter(MapControl);

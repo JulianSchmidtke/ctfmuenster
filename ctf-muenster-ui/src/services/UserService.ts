@@ -6,10 +6,13 @@ import UserDetail from "../models/User";
 
 export class UserSerivce {
 
+  public static getStdUserId(): Guid {
+    return Guid.parse("e59871b2-5970-4f04-b1cd-42a0796a5279")
+  }
+
   public static async getUserDetails(id: Guid): Promise<UserDetail> {
     const userResponse = await fetch(`https://app-ctfmuenster-api2.azurewebsites.net/Score/${id}/`)
-    const user = await userResponse.json()
-    return user as UserDetail;
+    return await userResponse.json() as UserDetail;
   }
 
   public static async getUser(id: Guid): Promise<User> {
