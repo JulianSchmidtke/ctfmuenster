@@ -1,9 +1,48 @@
 .historyEntry {
-    width: 300px;
-    height: 100px;
-    background-color: red;
-    border-radius: 5px;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
     margin-inline: 30px;
     margin-block: 10px;
-    padding: 10px;
+    padding-inline: 10px;
+    padding-block: 14px;
+    border: 1px solid rgb(240, 240, 240);
+    box-shadow: 0px 10px 8px #f1f1f1;
+}
+
+.flagIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgb(139, 166, 255);
+    margin-right: 10px;
+}
+
+.flagName {
+    margin-top: 5px;
+    font-size: large;
+}
+
+.points {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.captured {
+    right: 0;
+    color: rgb(15, 158, 15);
+    font-size: small;
+    font-style: italic;
+}
+
+.flagMiniIcon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: antiquewhite;
+}
+
+.dateTime {
+    margin-top: 2px;
+    margin-left: 5px;
 }
