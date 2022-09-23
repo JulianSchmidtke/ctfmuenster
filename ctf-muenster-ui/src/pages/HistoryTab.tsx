@@ -1,19 +1,34 @@
+import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './HistoryTab.css';
 
 import HistoryEntryControl from '../components/HistoryEntryControl';
 import HeaderContainer from '../components/HeaderContainer';
+import UserFlag from '../models/UserFlag';
+import { UserSerivce } from '../services/UserService';
+import { Guid } from "guid-typescript";
 /*
         
 */
 const HistoryTab: React.FC = () => {
 
-  let controls: JSX.Element[] = [];
+  const [historyEntryControls, setHistoryEntryControls] = useState(null);
 
-  for (let index = 0; index < 10; index++) {
-    controls.push(<HistoryEntryControl historyEntry={{userId: 1, flagId: 1, dateTime: new Date()}}/>);
-    
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const userFlags: UserFlag[] = await UserSerivce.getUserFlags(Guid.parse("e59871b2-5970-4f04-b1cd-42a0796a5279"))
+
+      let historyEntryControlsTemp: JSX.Element[] = [];
+      let i = 0;
+      userFlags.forEach(userFlag => {
+        historyEntryControlsTemp.push(<HistoryEntryControl key={i++} userFlag={userFlag}/>);
+      });
+
+      setHistoryEntryControls(historyEntryControlsTemp);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <IonPage>
@@ -26,7 +41,7 @@ const HistoryTab: React.FC = () => {
         </IonHeader>
 
         <div className='historyEntries'>
-          {controls}
+          {historyEntryControls}
         </div>
         
 

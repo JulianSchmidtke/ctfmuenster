@@ -1,8 +1,8 @@
 import './HistoryEntryControl.css';
-import HistoryEntry from '../models/HistoryEntry';
+import UserFlag from '../models/UserFlag';
 
 export interface HistoryEntryProps {
-  historyEntry: HistoryEntry;
+  userFlag: UserFlag;
 }
 
 const HistoryEntryControl: React.FC<HistoryEntryProps> = () => {
