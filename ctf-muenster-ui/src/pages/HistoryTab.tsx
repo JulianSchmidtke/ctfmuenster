@@ -1,38 +1,49 @@
+import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './HistoryTab.css';
 
 import HistoryEntryControl from '../components/HistoryEntryControl';
+import { HistoryEntryProps } from '../components/HistoryEntryControl';
 import HeaderContainer from '../components/HeaderContainer';
+import UserFlag from '../models/UserFlag';
+import { UserSerivce } from '../services/UserService';
+import { FlagService } from '../services/FlagService';
+import { Guid } from "guid-typescript";
 /*
         
 */
 const HistoryTab: React.FC = () => {
+  const [historyEntryControls, setHistoryEntryControls] = useState(null);
 
-  let controls: JSX.Element[] = [];
+  useEffect(() => {
+    const fetchData = async () => {
+      const userFlags: UserFlag[] = await UserSerivce.getUserFlags(Guid.parse("e59871b2-5970-4f04-b1cd-42a0796a5279"))
+      console.log(userFlags)
+      let historyEntryControlsTemp: JSX.Element[] = [];
 
-  for (let index = 0; index < 10; index++) {
-    controls.push(<HistoryEntryControl historyEntry={{userId: 1, flagId: 1, dateTime: new Date()}}/>);
-    
-  }
+      for (let i = 0; i < userFlags.length; i++) {
+        const flagName: string = (await FlagService.getFlag(userFlags[i].flagId)).flagName;
+
+        historyEntryControlsTemp.push(<HistoryEntryControl key={i} userFlag={userFlags[i]} flagName={flagName}/>);
+      }
+
+      setHistoryEntryControls(historyEntryControlsTemp);
+    };
+  
+    fetchData();
+  }, []);
 
   return (
     <IonPage>
       <HeaderContainer title="History" />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">History</IonTitle>
-          </IonToolbar>
-        </IonHeader>
 
         <div className='historyEntries'>
-          {controls}
+          {historyEntryControls}
         </div>
-        
-
       </IonContent>
     </IonPage>
   );
-};
+}
 
 export default HistoryTab;

@@ -2,7 +2,13 @@ import { Guid } from "guid-typescript";
 
 export default interface Flag {
     id: Guid;
-    name: string;
+    flagName: string;
     description: string;
-    // tags: Tag[];
+    location: {
+        latitude: number,
+        longitude: number
+    };
+    dateTimeEndActive: Date;
+    dateTimeStartActive: Date;
+    tags: string[];
 }

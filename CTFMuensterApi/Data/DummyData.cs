@@ -2,11 +2,10 @@ using CTFMuenster.Api.Model;
 using CTFMuensterApi.Data;
 
 public class DummyData : IDataRepository
-    {
-
-        private List<Flag> MockFlags;
-        private List<User> MockUsers;
-        private List<UserFlag> MockUserFlags;
+{
+    private List<Flag> MockFlags;
+    private List<User> MockUsers;
+    private List<UserFlag> MockUserFlags;
 
         private List<Tag> MockTags;
 
@@ -61,7 +60,7 @@ public class DummyData : IDataRepository
                 }
             };
 
-            MockUsers = new List<User>
+        MockUsers = new List<User>
             {
                 new User(){
                     Id=new Guid("e59871b2-5970-4f04-b1cd-42a0796a5279"),
@@ -74,7 +73,7 @@ public class DummyData : IDataRepository
                     UserName="Christian"},
             };
 
-            MockUserFlags = new List<UserFlag>
+        MockUserFlags = new List<UserFlag>
             {
                 new UserFlag(){
                     Id=new Guid(),
@@ -105,17 +104,23 @@ public class DummyData : IDataRepository
     }
 
     public IEnumerable<Flag> GetFlags()
-        {
-            return MockFlags;
-        }
-
-        public IEnumerable<UserFlag> GetUserFlags()
-        {
-            return MockUserFlags;
-        }
-
-        public IEnumerable<User> GetUsers()
-        {
-            return MockUsers;
-        }
+    {
+        return MockFlags;
     }
+
+    public IEnumerable<UserFlag> GetUserFlags()
+    {
+        return MockUserFlags;
+    }
+
+    public IEnumerable<User> GetUsers()
+    {
+        return MockUsers;
+    }
+
+    public Flag AddFlag(Flag flag)
+    {
+        MockFlags.Add(flag);
+        return flag;
+    }
+}

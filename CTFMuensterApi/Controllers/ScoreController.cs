@@ -20,7 +20,6 @@ public class ScoreController : ControllerBase
     {
         _logger = logger;
         _dataService = dataService;
-
     }
 
 

@@ -9,7 +9,6 @@ namespace CTFMuensterApi.Data
 
     public class DataService : IDataService
     {
-
         private IDataRepository data;
 
         public DataService(IDataRepository dataRepository)
@@ -97,8 +96,10 @@ namespace CTFMuensterApi.Data
                 FlagCount = u.Count()
             }).OrderByDescending(x => x.ScoreCount);
         }
+
+        public Flag AddFlag(Flag flag)
+        {
+            return data.AddFlag(flag);
+        }
     }
-
-
-
 }

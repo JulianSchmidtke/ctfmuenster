@@ -34,4 +34,11 @@ public class FlagController : ControllerBase
     {
         return _dataService.GetFlag(id);
     }
+
+    [HttpPost]
+    [Route("/add")]
+    public Flag AddFlag(Flag flag)
+    {
+        return _dataService.AddFlag(flag);
+    }
 }

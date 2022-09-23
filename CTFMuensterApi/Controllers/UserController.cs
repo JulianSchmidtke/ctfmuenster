@@ -20,7 +20,6 @@ public class UserController : ControllerBase
     {
         _logger = logger;
         _dataService = dataService;
-
     }
 
     [HttpGet]

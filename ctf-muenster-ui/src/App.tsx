@@ -10,11 +10,12 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { mapOutline, trophyOutline, personOutline, listOutline } from 'ionicons/icons';
+import { mapOutline, trophyOutline, listOutline, flagOutline } from 'ionicons/icons';
 import MapTab from './pages/MapTab';
 import HistoryTab from './pages/HistoryTab';
 import LeaderboardTab from './pages/LeaderboardTab';
 import UserTab from './pages/UserTab';
+import FlagTab from './pages/FlagTab';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,7 +43,10 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/map">
+          <Route path="/flags">
+            <FlagTab />
+          </Route>
+          <Route path="/map/:id">
             <MapTab />
           </Route>
           <Route path="/leaderboard">
@@ -51,15 +55,19 @@ const App: React.FC = () => (
           <Route path="/history">
             <HistoryTab />
           </Route>
-          <Route path="/user">
+          <Route exact path="/user">
             <UserTab />
           </Route>
           <Route exact path="/">
-            <Redirect to="/map" />
+            <Redirect to="/flags" />
           </Route>
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
+          <IonTabButton tab="Flags" href="/flags">
+            <IonIcon icon={flagOutline} />
+            <IonLabel>Flags</IonLabel>
+          </IonTabButton>
           <IonTabButton tab="map" href="/map">
             <IonIcon icon={mapOutline} />
             <IonLabel>Karte</IonLabel>
@@ -71,10 +79,6 @@ const App: React.FC = () => (
           <IonTabButton tab="history" href="/history">
             <IonIcon icon={listOutline} />
             <IonLabel>History</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="user" href="/user">
-            <IonIcon icon={personOutline} />
-            <IonLabel>Benutzer</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

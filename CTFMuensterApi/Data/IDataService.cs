@@ -5,6 +5,7 @@ using CTFMuenster.Api.Model;
 
 namespace CTFMuensterApi.Data {
     public interface IDataService {
+
         public User GetUser(Guid id);
 
         public IEnumerable<User> GetUsers();
@@ -26,5 +27,7 @@ namespace CTFMuensterApi.Data {
         public IEnumerable<UserFlag> GetPoints(int maxUsers, DateTimeOffset minimumDate, DateTimeOffset maximumDate);
 
         public IEnumerable<Score> GetScores(DateTimeOffset? since);
+
+        public Flag AddFlag(Flag flag);
     }
 }

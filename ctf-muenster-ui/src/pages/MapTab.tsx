@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import HeaderContainer from '../components/HeaderContainer';
-import MapContainer from '../components/MapContainer';
+import MapControl from '../components/map/MapControl';
 
 import './MapTab.css';
 
@@ -16,10 +16,10 @@ const MapTab: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
+            <IonTitle size="large">Karte</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* <MapContainer/> */}
+        <MapControl/>
       </IonContent>
     </IonPage>
   );
