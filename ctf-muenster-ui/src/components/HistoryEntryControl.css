@@ -24,7 +24,7 @@
 }
 
 .points {
-    margin-top: 12px;
+    margin-top: 10px;
     font-weight: bold;
 }
 
@@ -43,6 +43,5 @@
 }
 
 .dateTime {
-    margin-top: 2px;
     margin-left: 5px;
 }

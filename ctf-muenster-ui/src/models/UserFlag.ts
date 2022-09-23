@@ -5,5 +5,6 @@ export default interface UserFlag {
     id: Guid;
     active: boolean;
     score: number;
-    dateTimeCollected: Date
+    dateTimeCollected: Date,
+    flagId: Guid
 }

@@ -13,7 +13,7 @@ const FlagCard: React.FC<ContainerProps> = ({ flag }) => {
       </IonCardHeader>
 
       <IonCardContent>{flag.description}</IonCardContent>
-      <IonCardContent>Ende: {flag.dateTimeEndActive.toString()}</IonCardContent>
+      <IonCardContent>Ende: {flag.dateTimeEndActive.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})}</IonCardContent>
     </IonCard>
   );
 };

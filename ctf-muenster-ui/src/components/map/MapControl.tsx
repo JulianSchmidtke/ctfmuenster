@@ -1,12 +1,23 @@
 import './MapControl.css';
 
-import { MapContainer, Marker, Popup, TileLayer} from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { RouteComponentProps, withRouter } from 'react-router';
 import React from 'react'
 import { FlagService } from '../../services/FlagService';
 import Flag from '../../models/Flag';
-import {Icon} from './Icon';
+import { Icon } from './Icon';
 import { Guid } from 'guid-typescript'
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+// let DefaultIcon = L.icon({
+//   iconUrl: icon,
+//   shadowUrl: iconShadow
+// });
+
+L.Marker.prototype.options.icon = Icon;
 
 type MapParams = { id: string }
 type MapProps = RouteComponentProps<MapParams>;
@@ -42,14 +53,11 @@ class MapControl extends React.Component<MapProps, MapState>{
     return (
       <MapContainer style={{ height: "80vh", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
         {
           flag != undefined && <Marker position={[flag.location.longitude, flag.location.latitude]} >
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
           </Marker>
         }
       </MapContainer >
