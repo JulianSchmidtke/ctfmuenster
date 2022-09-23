@@ -21,6 +21,7 @@ class UserTab extends React.Component {
     })
 
     UserSerivce.getUserDetails(Guid.parse("e59871b2-5970-4f04-b1cd-42a0796a5279")).then(user => {
+      console.log(user)
       this.setState({
         userDetails: user,
         loading: false

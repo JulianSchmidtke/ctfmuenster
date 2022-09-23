@@ -20,6 +20,7 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.27.2",
+    "guid-typescript": "^1.0.9",
     "ionicons": "^6.0.3",
     "leaflet": "^1.9.1",
     "react": "^18.2.0",

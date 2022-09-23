@@ -23,8 +23,7 @@ class MapControl extends React.Component<MapProps, MapState>{
     lng_pos: 51.9503535,
     lat_pos: 7.638635,
     zoom: 20,
-    flag: undefined,
-    flag_exists: false
+    flag: undefined
   }
 
   componentDidMount(): void {
@@ -32,8 +31,7 @@ class MapControl extends React.Component<MapProps, MapState>{
     if (Guid.isGuid(flagId)) {
       FlagService.getFlag(flagId).then(flag => {
         this.setState({
-          flag: flag,
-          flag_exists: true
+          flag: flag
         })
       })
     }
@@ -48,7 +46,7 @@ class MapControl extends React.Component<MapProps, MapState>{
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {
-          flag_exists && <Marker position={[flag.longitude, flag.latitude]} />
+          flag && <Marker position={[flag.longitude, flag.latitude]} />
         }
       </MapContainer >
     )
