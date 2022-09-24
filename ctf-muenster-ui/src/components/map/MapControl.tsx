@@ -31,7 +31,7 @@ type MapState = {
   zoom: number;
   flag: Flag | undefined;
   showAlert: boolean;
-  captured:boolean;
+  captured: boolean;
 }
 
 class MapControl extends React.Component<MapProps, MapState>{
@@ -41,12 +41,13 @@ class MapControl extends React.Component<MapProps, MapState>{
     zoom: 12,
     flag: undefined,
     showAlert: false,
-    captured:false
+    captured: false
   }
 
   componentDidUpdate(prevProps: Readonly<MapProps>, prevState: Readonly<MapState>, snapshot?: any): void {
     if (prevProps.match != this.props.match) {
       let flagId = this.props.match.params.id;
+      this.setState({ captured: false })
       this.updateFlag(flagId)
     }
   }
@@ -117,8 +118,8 @@ class MapControl extends React.Component<MapProps, MapState>{
     let distance = this.calcDistance(lng_pos, flag.location.longitude, lat_pos, flag.location.latitude);
     console.log(distance)
 
-    if(flag && !captured && distance < 2000){
-      this.setState({showAlert: true})
+    if (flag && !captured && distance < 20) {
+      this.setState({ showAlert: true })
     }
 
     return (
@@ -126,7 +127,7 @@ class MapControl extends React.Component<MapProps, MapState>{
         <IonAlert
           isOpen={showAlert}
           onDidDismiss={() => {
-            this.setState({showAlert: false, captured:true})
+            this.setState({ showAlert: false, captured: true })
             FlagService.captureFlag(flag)
             this.props.history.push("/history");
           }
