@@ -10,8 +10,8 @@ interface ContainerProps {
 const HeaderContainer: React.FC<ContainerProps> = ({ title }) => {
   return (
     <IonHeader>
-      <IonToolbar color="primary">
-          <IonButtons slot="primary">
+      <IonToolbar>
+          <IonButtons>
             <IonButton routerLink="/user">
               <IonIcon slot="icon-only" icon={personCircleOutline}></IonIcon>
             </IonButton>
