@@ -1,3 +1,5 @@
+#define MOCKDATABASE
+
 using CTFMuensterApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,9 +9,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddDbContext<ModelDbContext>(options => options.UseInMemoryDatabase("items"));
-builder.Services.AddDbContext<ModelDbContext>(options => options.UseSqlite("Filename=jovel_flags.db"));
-builder.Services.AddSingleton<IDataRepository, DummyData>();
+#if MOCKDATABASE
+    builder.Services.AddSingleton<IDataRepository, DummyData>();
+#else
+    builder.Services.AddSingleton<IDataRepository, EFData>();
+    builder.Services.AddDbContext<ModelDbContext>(options => options.UseSqlite("Filename=jovel_flags.db"));
+#endif
 builder.Services.AddSingleton<IDataService, DataService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,13 +24,15 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // make sure DB exists
-var dbBuilder = new DbContextOptionsBuilder();
-dbBuilder.UseSqlite("Filename=jovel_flags.db");
-using (var db = new ModelDbContext(dbBuilder.Options))
-{
-    db.Database.EnsureCreated();
-    db.Database.Migrate();
-}
+#if !MOCKDATABASE
+    var dbBuilder = new DbContextOptionsBuilder();
+    dbBuilder.UseSqlite("Filename=jovel_flags.db");
+    using (var db = new ModelDbContext(dbBuilder.Options))
+    {
+        db.Database.EnsureCreated();
+        db.Database.Migrate();
+    }
+#endif
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
