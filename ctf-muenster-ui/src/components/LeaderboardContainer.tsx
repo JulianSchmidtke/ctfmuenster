@@ -52,8 +52,8 @@ class LeaderboardContainer extends React.Component {
       // flagCount: number
     };
 
-  fetchScores(dt?: Date) {
-    UserSerivce.getScores(dt)
+  fetchScores(period: number) {
+    UserSerivce.getScores(period)
       .then((res) => {
         this.setState({
           leaderBoard: res
@@ -68,14 +68,13 @@ class LeaderboardContainer extends React.Component {
     this.setState({
       loading: true
     })
-    this.fetchScores()
+    this.fetchScores(0);
   }
 
 
   handleClick = (period: number) => {
-    if(period === 0){
-      this.fetchScores();
-    }
+      this.fetchScores(period);
+    
     
   }
 

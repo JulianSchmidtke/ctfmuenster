@@ -12,11 +12,6 @@ import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-// let DefaultIcon = L.icon({
-//   iconUrl: icon,
-//   shadowUrl: iconShadow
-// });
-
 L.Marker.prototype.options.icon = Icon;
 
 type MapParams = { id: string }
@@ -37,18 +32,20 @@ class MapControl extends React.Component<MapProps, MapState>{
     flag: undefined
   }
 
-  // UNSAFE_componentWillUpdate(): void {
-  //   let flagId = this.props.match.params.id;
-  //   if (flagId) { this.updateFlag(flagId) }
-  // }
+  componentDidUpdate(prevProps: Readonly<MapProps>, prevState: Readonly<MapState>, snapshot?: any): void {
+    if (prevProps.match != this.props.match) {
+      let flagId = this.props.match.params.id;
+      this.updateFlag(flagId)
+    }
+  }
 
   componentDidMount(): void {
     let flagId = this.props.match.params.id;
-    if (flagId) { this.updateFlag(flagId) }
+    this.updateFlag(flagId)
   }
 
-  updateFlag(flagId: string) {
-    if (Guid.isGuid(flagId)) {
+  updateFlag(flagId: string | undefined) {
+    if (flagId && Guid.isGuid(flagId)) {
       FlagService.getFlag(flagId).then(flagObj => {
         this.setState({
           flag: flagObj
@@ -63,7 +60,6 @@ class MapControl extends React.Component<MapProps, MapState>{
 
   render(): React.ReactNode {
     var { lng_pos, lat_pos, zoom, flag } = this.state
-    console.log(flag)
     if (!flag) {
       return (
         <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
@@ -75,7 +71,7 @@ class MapControl extends React.Component<MapProps, MapState>{
     }
 
     return (
-      <MapContainer style={{ height: "60vh", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
+      <MapContainer style={{ height: "60%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />

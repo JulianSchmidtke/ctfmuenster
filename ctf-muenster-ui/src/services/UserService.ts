@@ -33,7 +33,6 @@ export class UserSerivce {
   public static async getScores(period: number): Promise<{user: User, scoreCount: number, flagCount: number}[]> {
     const today: Date = new Date();
     let dt: Date = new Date(today);
-    console.log('first' + dt);
     
 
     let scoreReponse: Response;
@@ -41,10 +40,9 @@ export class UserSerivce {
       scoreReponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score");
     } else {
       dt.setDate(dt.getDate() - (period));
+      dt.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})
       console.log(dt);
-      dt.setHours(0, 0, 0, 0);
-      console.log(dt);
-      scoreReponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score?since=" + dt);
+      scoreReponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score?since=" + dt.toISOString().substring(0, 10));
     }
       
       return await scoreReponse.json() as {user: User, scoreCount: number, flagCount: number}[];
