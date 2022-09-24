@@ -71,7 +71,7 @@ class UserTab extends React.Component {
             </IonCardHeader>
               
             <IonCardContent> 
-              Punkteanzahl: {userDetails.scoreCount | 0} <IonIcon icon={medalOutline}></IonIcon> <br />
+              Punktzahl: {userDetails.scoreCount | 0} <IonIcon icon={medalOutline}></IonIcon> <br />
               Gefundene Flaggen: {userDetails.flagCount | 0} <IonIcon icon={flagOutline}></IonIcon>
             </IonCardContent>
           </IonCard>

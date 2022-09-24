@@ -35,7 +35,7 @@ const HistoryTab: React.FC = () => {
 
   return (
     <IonPage>
-      <HeaderContainer title="History" />
+      <HeaderContainer title="Erfolge" />
       <IonContent fullscreen>
 
         <div className='historyEntries'>

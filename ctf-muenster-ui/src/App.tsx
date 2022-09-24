@@ -66,7 +66,7 @@ const App: React.FC = () => (
         <IonTabBar slot="bottom">
           <IonTabButton tab="Flags" href="/flags">
             <IonIcon icon={flagOutline} />
-            <IonLabel>Flags</IonLabel>
+            <IonLabel>Flaggen</IonLabel>
           </IonTabButton>
           <IonTabButton tab="map" href="/map">
             <IonIcon icon={mapOutline} />
@@ -78,7 +78,7 @@ const App: React.FC = () => (
           </IonTabButton>
           <IonTabButton tab="history" href="/history">
             <IonIcon icon={listOutline} />
-            <IonLabel>History</IonLabel>
+            <IonLabel>Erfolge</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
