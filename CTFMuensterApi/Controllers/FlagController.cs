@@ -23,9 +23,9 @@ public class FlagController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Flag> Get()
+    public IEnumerable<Flag> Get([FromQuery]bool? active)
     {
-        return _dataService.GetFlags();
+        return _dataService.GetFlags(active);
     }
 
     [HttpGet]
