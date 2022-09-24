@@ -5,7 +5,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import React from 'react'
 import { FlagService } from '../../services/FlagService';
 import Flag from '../../models/Flag';
-import { Icon } from './Icon';
+import { MsFlagIcon, CircleIcon } from './Icon';
 import { Guid } from 'guid-typescript'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -17,7 +17,8 @@ import {
   IonButton, IonRippleEffect, IonIcon, IonChip
 } from '@ionic/react';
 
-L.Marker.prototype.options.icon = Icon;
+const FlagIcon = MsFlagIcon
+L.Marker.prototype.options.icon = CircleIcon;
 
 type MapParams = { id: string }
 type MapProps = RouteComponentProps<MapParams>;
@@ -101,9 +102,9 @@ class MapControl extends React.Component<MapProps, MapState>{
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[flag.location.longitude, flag.location.latitude]} ></Marker>
+            <Marker position={[flag.location.longitude, flag.location.latitude]} icon={FlagIcon}></Marker>
             {lng_pos && lat_pos &&
-              <Marker position={[lng_pos, lat_pos]} ></Marker>
+              <Marker position={[lng_pos, lat_pos]}></Marker>
             }
           </MapContainer >
         </div>

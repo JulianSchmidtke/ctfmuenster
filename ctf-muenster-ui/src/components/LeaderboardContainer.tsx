@@ -83,7 +83,7 @@ class LeaderboardContainer extends React.Component {
 
     return (
       <div className="board" >
-        <h1 className='leaderboard'>Rangliste</h1>
+        <h1 className='leaderboard'></h1>
 
         <div className="duration">
           <button onClick={() => this.handleClick(1)}>1 Tag</button>
