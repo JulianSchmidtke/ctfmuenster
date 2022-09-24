@@ -15,7 +15,9 @@ const FlagCard: React.FC<ContainerProps> = ({ flag }) => {
           <IonCardTitle>{flag.flagName}</IonCardTitle>
         </IonCardHeader>
 
-        <div className='flagIconFull'></div>
+        <div className='flagIconFull'>
+          <img src={flag.imageFileName} style={{borderRadius: "5px"}} />
+        </div>
 
         
       </div>

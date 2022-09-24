@@ -10,7 +10,7 @@ export class FlagService {
     }
 
     public static async getFlags(): Promise<Flag[]> {
-        const flagsResponse = await fetch('https://app-ctfmuenster-api2.azurewebsites.net/flag', {
+        const flagsResponse = await fetch('https://app-ctfmuenster-api2.azurewebsites.net/flag?active=true', {
             method: "GET",
             mode: "cors"
         });

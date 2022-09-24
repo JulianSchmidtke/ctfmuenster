@@ -68,7 +68,7 @@ class LeaderboardContainer extends React.Component {
     this.setState({
       loading: true
     })
-    this.fetchScores(0);
+    this.handleClick(0);
   }
 
 
@@ -79,6 +79,7 @@ class LeaderboardContainer extends React.Component {
   }
 
   render() {
+    let defaultFilter = true;
     const { leaderBoard, loading } = this.state;
 
     return (

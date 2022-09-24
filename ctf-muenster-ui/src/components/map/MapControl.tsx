@@ -48,11 +48,9 @@ class MapControl extends React.Component<MapProps, MapState>{
   componentDidMount(): void {
     if ("geolocation" in navigator) {
       navigator.geolocation.watchPosition((position) => {
-        console.log("Latitude is :", position.coords.latitude);
-        console.log("Longitude is :", position.coords.longitude);
         this.setState({
-          lng_pos: position.coords.longitude,
-          lat_pos: position.coords.latitude
+          lng_pos: position.coords.latitude,
+          lat_pos: position.coords.longitude
         });
       });
     } else {

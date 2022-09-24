@@ -22,9 +22,9 @@ const HistoryTab: React.FC = () => {
       let historyEntryControlsTemp: JSX.Element[] = [];
 
       for (let i = 0; i < userFlags.length; i++) {
-        const flagName: string = (await FlagService.getFlag(userFlags[i].flagId)).flagName;
+        const flag = await FlagService.getFlag(userFlags[i].flagId);
 
-        historyEntryControlsTemp.push(<HistoryEntryControl key={i} userFlag={userFlags[i]} flagName={flagName}/>);
+        historyEntryControlsTemp.push(<HistoryEntryControl key={i} userFlag={userFlags[i]} flag={flag}/>);
       }
 
       setHistoryEntryControls(historyEntryControlsTemp);
