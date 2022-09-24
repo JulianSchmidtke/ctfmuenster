@@ -12,4 +12,5 @@ export default interface Flag {
     dateTimeEndActive: Date;
     dateTimeStartActive: Date;
     tags: Tag[];
+    imageFileName: string;
 }

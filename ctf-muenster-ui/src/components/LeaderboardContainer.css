@@ -40,6 +40,9 @@
   color: var(--color-light);
 }
 
+#profile .ion-margin-start {
+  margin-left: 3px;
+}
 
 .active {
   background-color: var(--color-dark);
@@ -92,3 +95,4 @@
   border-bottom: 1px solid #d7d8da;
   
 }
+

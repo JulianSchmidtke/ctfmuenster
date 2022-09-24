@@ -47,7 +47,7 @@ class MapControl extends React.Component<MapProps, MapState>{
 
   componentDidMount(): void {
     if ("geolocation" in navigator) {
-      navigator.geolocation.watchPosition(function (position) {
+      navigator.geolocation.watchPosition((position) => {
         console.log("Latitude is :", position.coords.latitude);
         console.log("Longitude is :", position.coords.longitude);
         this.setState({
@@ -72,19 +72,17 @@ class MapControl extends React.Component<MapProps, MapState>{
       })
     } else {
       this.setState({
-        flag: undefined
+        flag: undefined,
+        zoom: 12
       })
     }
   }
 
   render(): React.ReactNode {
     var { lng_pos, lat_pos, zoom, flag } = this.state
-
-
     if (!flag) {
-
       return (
-        <MapContainer style={{ height: "1000%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
+        <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />

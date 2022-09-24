@@ -32,8 +32,8 @@ function Item(data: any) {
               <Gravatar className='userIcon' email={value.user.id + '@gmail.com'} default={"identicon"}/>
             </IonCol>
             <IonCol className='centerText'>{value.user.userName}</IonCol>
-            <IonCol className='centerText'>{value.scoreCount} <IonIcon icon={medalOutline}></IonIcon></IonCol>
-            <IonCol className='centerText'>{value.flagCount} <IonIcon icon={flagOutline}></IonIcon></IonCol>
+            <IonCol className='centerText'>{value.scoreCount} <IonIcon class="ion-margin-start" icon={medalOutline}></IonIcon></IonCol>
+            <IonCol className='centerText'>{value.flagCount} <IonIcon class="ion-margin-start" icon={flagOutline}></IonIcon></IonCol>
           </IonRow>
         ))
       }
