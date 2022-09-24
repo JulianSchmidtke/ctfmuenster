@@ -1,7 +1,7 @@
 import './HistoryEntryControl.css';
 import UserFlag from '../models/UserFlag';
-import { IonIcon } from '@ionic/react';
-import { flagOutline, medalOutline } from 'ionicons/icons';
+import { IonIcon, IonButton, IonButtons } from '@ionic/react';
+import { flagOutline, medalOutline, shareSocialOutline } from 'ionicons/icons';
 import Flag from '../models/Flag';
 
 
@@ -25,7 +25,14 @@ const HistoryEntryControl: React.FC<HistoryEntryProps> = props => {
           <img src={flag.imageFileName} style={{borderRadius: "5px"}} />
         </div>
         <div className='flagName'>{flag.flagName}</div>
-        <div className='captured' style={{flex: 1, textAlign: 'end', marginTop: 5}}>Gesammelt!</div>
+        <div className='captured' style={{flex: 1, textAlign: 'end', marginTop: 5}}>
+        <IonButtons style={{float: "right", color: "black"}}>
+          <IonButton>
+            <IonIcon icon={shareSocialOutline}></IonIcon>
+          </IonButton>
+        </IonButtons>
+          Gesammelt!
+        </div>
       </div>
       
       <div style={{display: 'flex'}}>

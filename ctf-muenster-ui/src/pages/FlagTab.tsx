@@ -33,11 +33,7 @@ class FlagTab extends React.Component {
       <IonPage>
         <HeaderContainer title="Flaggen" />
         <IonContent fullscreen>
-          <IonHeader collapse="condense">
-            <IonToolbar>
-              <IonTitle size="large">Flaggen</IonTitle>
-            </IonToolbar>
-          </IonHeader>
+          
           {!loading && flags.map((flag) => <FlagCard key={flag.id} flag={flag} />)}
         </IonContent>
       </IonPage>

@@ -9,11 +9,6 @@ const LeaderboardTab: React.FC = () => {
     <IonPage>
       <HeaderContainer title="Rangliste" />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Rangliste</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <LeaderboardContainer/>
       </IonContent>
     </IonPage>

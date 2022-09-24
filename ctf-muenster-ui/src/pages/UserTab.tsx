@@ -52,7 +52,6 @@ class UserTab extends React.Component {
       <IonPage>
         <HeaderContainer title="Benutzer" />
         <IonContent fullscreen>
-
           <IonCard>
             <Gravatar email={`${userDetails.user.userName}@gmail.com`} size={512} default={"identicon"} className="user-icon" />
             <IonCardHeader>

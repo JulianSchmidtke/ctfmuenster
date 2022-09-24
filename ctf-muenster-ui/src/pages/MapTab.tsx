@@ -12,13 +12,8 @@ const MapTab: React.FC = () => {
 
   return (
     <IonPage>
-      <HeaderContainer title="Map" />
+      <HeaderContainer title="Karte" />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Karte</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <MapControl/>
       </IonContent>
     </IonPage>

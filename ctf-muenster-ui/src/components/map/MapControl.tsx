@@ -16,7 +16,7 @@ import {
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel,
   IonButton, IonRippleEffect, IonIcon, IonChip, IonAlert, IonButtons, IonRedirect
 } from '@ionic/react';
-import { ellipsisVertical } from 'ionicons/icons';
+import { ellipsisVertical} from 'ionicons/icons';
 
 
 const FlagIcon = MsFlagIcon
