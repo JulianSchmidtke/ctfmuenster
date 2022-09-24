@@ -36,7 +36,7 @@ public class DummyData : IDataRepository
                     Description="Prinzipalmarkt",
                     FlagName="Prinzipalmarkt",
                     Location= new Location(51.962776004909124, 7.6282566472538615),
-                    ImageFileName="prinzipalmarkt.png",
+                    ImageFileName="https://stctfmuenster.blob.core.windows.net/ctf/prinzipalmarkt.png",
                     Tags= new Tag[]{
                         MockTags.Where(x => x.Name.Equals("history")).First()
                     },
@@ -48,7 +48,7 @@ public class DummyData : IDataRepository
                     Description="Buddenturm",
                     FlagName="Buddenturm",
                     Location= new Location(51.96626699838519, 7.623065882679778),
-                    ImageFileName="buddenturm.png",
+                    ImageFileName="https://stctfmuenster.blob.core.windows.net/ctf/buddenturm.png",
                     Tags= new Tag[]{
                         MockTags.Where(x => x.Name.Equals("history")).First()
                     },
@@ -60,7 +60,7 @@ public class DummyData : IDataRepository
                     Description="Davidwache",
                     FlagName="Davidwache",
                     Location= new Location(51.96646017686706, 7.6182496299172575),
-                    ImageFileName="davidwache.png",
+                    ImageFileName="https://stctfmuenster.blob.core.windows.net/ctf/davidwache.png",
                     Tags= new Tag[]{
                         MockTags.Where(x => x.Name.Equals("party")).First()
                     },
@@ -72,7 +72,7 @@ public class DummyData : IDataRepository
                     Description="Schloss",
                     FlagName="Schloss",
                     Location= new Location(51.963522387472324, 7.614137158901378),
-                    ImageFileName="schloss.png",
+                    ImageFileName="https://stctfmuenster.blob.core.windows.net/ctf/schloss.png",
                     Tags= new Tag[]{
                         MockTags.Where(x => x.Name.Equals("history")).First()
                     },
@@ -84,7 +84,7 @@ public class DummyData : IDataRepository
                     Description="Hafen",
                     FlagName="Hafen",
                     Location= new Location(51.95130983077973, 7.638806055037238),
-                    ImageFileName="hafen.png",
+                    ImageFileName="https://stctfmuenster.blob.core.windows.net/ctf/hafen.png",
                     Tags= new Tag[]{
                         MockTags.Where(x => x.Name.Equals("party")).First()
                     }
@@ -94,7 +94,7 @@ public class DummyData : IDataRepository
                     Description="Flugplatz Münster-Handorf",
                     FlagName="Flugplatz Münster-Handorf",
                     Location= new Location(51.995277777778, 7.7319444444444),
-                    ImageFileName="handorf-flugplatz.png",
+                    ImageFileName="https://stctfmuenster.blob.core.windows.net/ctf/handorf-flugplatz.png",
                     Tags= new Tag[]{
                         MockTags.Where(x => x.Name.Equals("history")).First()
                     },
@@ -106,7 +106,7 @@ public class DummyData : IDataRepository
                     Description="St.-Paulus-Dom",
                     FlagName="St.-Paulus-Dom",
                     Location= new Location(51.96296072682899, 7.625782327779225),
-                    ImageFileName="paulus-dom.png",
+                    ImageFileName="https://stctfmuenster.blob.core.windows.net/ctf/paulus-dom.png",
                     Tags= new Tag[]{
                         MockTags.Where(x => x.Name.Equals("history")).First()
                     },
