@@ -83,7 +83,7 @@ class MapControl extends React.Component<MapProps, MapState>{
     if (!flag) {
 
       return (
-        <MapContainer style={{ height: "60%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
+        <MapContainer style={{ height: "1000%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
