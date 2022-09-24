@@ -46,7 +46,7 @@ const App: React.FC = () => (
           <Route path="/flags">
             <FlagTab />
           </Route>
-          <Route path="/map/:id">
+          <Route path="/map/:id?">
             <MapTab />
           </Route>
           <Route path="/leaderboard">
