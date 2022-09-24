@@ -14,7 +14,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonItem,
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel,
-  IonButton, IonRippleEffect, IonIcon, IonChip
+  IonButton, IonRippleEffect, IonIcon, IonChip, IonAlert
 } from '@ionic/react';
 
 const FlagIcon = MsFlagIcon
@@ -60,6 +60,22 @@ class MapControl extends React.Component<MapProps, MapState>{
     this.updateFlag(flagId)
   }
 
+  calcDistance(lon1, lon2, lat1, lat2) {
+    const R = 6371e3; // metres
+    const φ1 = lat1 * Math.PI / 180; // φ, λ in radians
+    const φ2 = lat2 * Math.PI / 180;
+    const Δφ = (lat2 - lat1) * Math.PI / 180;
+    const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+      Math.cos(φ1) * Math.cos(φ2) *
+      Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const d = R * c; // in metres
+    return d
+  }
+
   updateFlag(flagId: string | undefined) {
     if (flagId && Guid.isGuid(flagId)) {
       FlagService.getFlag(flagId).then(flagObj => {
@@ -91,8 +107,22 @@ class MapControl extends React.Component<MapProps, MapState>{
       )
     }
 
+    let distance = this.calcDistance(lng_pos, flag.location.longitude, lat_pos, flag.location.latitude);
+    console.log(distance)
+
     return (
       <>
+        <IonAlert
+          isOpen={distance < 20}
+          onDidDismiss={() => {
+            FlagService.captureFlag(flag)
+            this.setState({ flag: undefined })
+          }
+          }
+          header="Flagge gefunden"
+          message={flag.flagName}
+          buttons={['Sammeln']}
+        />
         <div style={{ height: "75%" }}>
           <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
             <TileLayer

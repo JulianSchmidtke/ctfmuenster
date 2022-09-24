@@ -24,7 +24,7 @@ const FlagCard: React.FC<ContainerProps> = ({ flag }) => {
       
 
       <IonCardContent>
-        {flag.description} <br />
+        <p style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", width: "70%"}}>{flag.description}</p>
         Ende: {flag.dateTimeEndActive.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})} <br />
         {
           flag.tags.map(t => {

@@ -26,4 +26,14 @@ export class FlagService {
         const flag = await flagsResponse.json()
         return FlagService.cleanFlag(flag) as Flag
     }
+
+
+    public static async captureFlag(flag: Flag) {
+        let userId = "e59871b2-5970-4f04-b1cd-42a0796a5279"
+        let body = { "id": flag.id }
+
+        await fetch(`https://app-ctfmuenster-api2.azurewebsites.net/user/${userId}/addflag`, {
+            body: JSON.stringify(body)
+        })
+    }
 }

@@ -9,9 +9,6 @@ import { UserSerivce } from '../services/UserService';
 
 import { flagOutline, medalOutline } from 'ionicons/icons';
 
-
-
-
 function profiles(data: any) {
   return (
     <div id="profile">
@@ -29,7 +26,7 @@ function Item(data: any) {
           <IonRow key={index} className="col-border">
             <IonCol className='centerText'>#{index + 1}</IonCol>
             <IonCol>
-              <Gravatar className='userIcon' email={value.user.id + '@gmail.com'} default={"identicon"}/>
+              <Gravatar className='userIcon' email={value.user.id + '@gmail.com'} default={"identicon"} />
             </IonCol>
             <IonCol className='centerText'>{value.user.userName}</IonCol>
             <IonCol className='centerText'>{value.scoreCount} <IonIcon class="ion-margin-start" icon={medalOutline}></IonIcon></IonCol>
@@ -46,7 +43,7 @@ class LeaderboardContainer extends React.Component {
     {
       leaderBoard: [],
       loading: false,
-      period: 0
+      period: 0,
       // user: User,
       // scoreCount: number,
       // flagCount: number
@@ -68,18 +65,19 @@ class LeaderboardContainer extends React.Component {
     this.setState({
       loading: true
     })
-    this.handleClick(0);
+    this.fetchScores(0);
   }
 
 
   handleClick = (period: number) => {
-      this.fetchScores(period);
-    
-    
+    this.setState({ defaultFilter: false })
+    this.fetchScores(period);
+
+
   }
 
   render() {
-    let defaultFilter = true;
+
     const { leaderBoard, loading } = this.state;
 
     return (
