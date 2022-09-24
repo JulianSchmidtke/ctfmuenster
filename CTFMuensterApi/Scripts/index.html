@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+	  <div class="container text-center">
+		<h1>Flaggen hinzufuegen</h1>
+		<form id="putflagdata">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">Flaggenname</label>
+		    <input type="text" name="flagName" value="test" class="form-control" id="exampleInputEmail1">
+		  </div>
+		  <!--<div class="form-group">
+		    <label for="exampleInputEmail1">Laengengrad</label>
+		    <input type="text" name="longitude" class="form-control" id="exampleInputEmail1">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">Breitengrad</label>
+		    <input type="text" name="latitude" class="form-control" id="exampleInputEmail1">
+		  </div>-->
+		  <div class="form-group">
+		    <label for="exampleFormControlTextarea1">Flaggenbeschreibung</label>
+		    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleFormControlTextarea1">Flaggen Tags</label>
+		    <textarea class="form-control" name="tags" id="exampleFormControlTextarea1" rows="3"></textarea>
+		  </div>
+		  <!--<div class="form-group">
+		    <label for="exampleFormControlFile1">Flaggenbild</label>
+		    <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+		  </div>-->
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+			
+    	function uuidv4() {
+  			return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    			(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  			);
+			}
+
+			$( "#putflagdata" ).submit(function( event ) {
+		  	var	form_data = Object.fromEntries(new FormData(document.getElementById('putflagdata')).entries());
+	  		form_data["id"] = uuidv4();
+	  		form_data["tags"] = [];
+	  		form_data["dateTimeStartActive"] = "2022-09-23T22:19:11.409Z";
+	  		form_data["dateTimeEndActive"] = "2022-09-23T22:19:11.409Z";
+	  		form_data["location"] = {
+			    "id": uuidv4(),
+			    "latitude": 0,
+			    "longitude": 0
+	  		};
+				
+			  $.ajax({
+		  		method: "POST",
+					url: "https://localhost:7222/flag/add",
+					data: JSON.stringify(form_data),
+					contentType: "application/json",
+					dataType: "json",
+					success: function() {
+						alert( "success" );
+					},
+					error: function() {
+						alert( "error" );
+					}
+			  });
+
+			  event.preventDefault();
+			});
+		</script>
+
+  </body>
+</html>

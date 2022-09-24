@@ -37,31 +37,53 @@ class MapControl extends React.Component<MapProps, MapState>{
     flag: undefined
   }
 
+  // UNSAFE_componentWillUpdate(): void {
+  //   let flagId = this.props.match.params.id;
+  //   if (flagId) { this.updateFlag(flagId) }
+  // }
+
   componentDidMount(): void {
-    var flagId = this.props.match.params.id;
+    let flagId = this.props.match.params.id;
+    if (flagId) { this.updateFlag(flagId) }
+  }
+
+  updateFlag(flagId: string) {
     if (Guid.isGuid(flagId)) {
       FlagService.getFlag(flagId).then(flagObj => {
         this.setState({
           flag: flagObj
         })
       })
+    } else {
+      this.setState({
+        flag: undefined
+      })
     }
   }
 
   render(): React.ReactNode {
     var { lng_pos, lat_pos, zoom, flag } = this.state
+    console.log(flag)
+    if (!flag) {
+      return (
+        <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </MapContainer >
+      )
+    }
+
     return (
-      <MapContainer style={{ height: "80vh", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
+      <MapContainer style={{ height: "60vh", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
-        {
-          flag != undefined && <Marker position={[flag.location.longitude, flag.location.latitude]} >
-          </Marker>
-        }
+        <Marker position={[flag.location.longitude, flag.location.latitude]} ></Marker>
+
       </MapContainer >
     )
   }
 };
+
 export default withRouter(MapControl);

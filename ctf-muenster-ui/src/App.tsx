@@ -55,7 +55,7 @@ const App: React.FC = () => (
           <Route path="/history">
             <HistoryTab />
           </Route>
-          <Route exact path="/user">
+          <Route path="/user">
             <UserTab />
           </Route>
           <Route exact path="/">

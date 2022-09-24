@@ -1,0 +1,10 @@
+.user-icon {
+  height: 250px;
+  width: auto;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  padding-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
