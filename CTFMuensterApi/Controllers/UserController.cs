@@ -56,11 +56,13 @@ public class UserController : ControllerBase
         User user = _dataService.GetUser(userId);
         Flag flag = _dataService.GetFlag(postUserFlagRequest.Id);
 
-        UserFlag bla = _dataService.CreateUserFlag(new UserFlag()
+        var score = Math.Max(1000-(_dataService.GetUsersPerFlag(postUserFlagRequest.Id).Count()*5), 50);
+
+        _dataService.CreateUserFlag(new UserFlag()
         {
             UserId = user.Id,
             FlagId = flag.Id,
-            Score = 10
+            Score = score
         });
 
         return _dataService.GetFlagsPerUser(userId, postUserFlagRequest.Id);

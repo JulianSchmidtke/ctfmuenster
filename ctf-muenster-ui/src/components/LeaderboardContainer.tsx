@@ -24,14 +24,14 @@ function Item(data: any) {
             {
                 data.map((value, index) => (
                     <IonRow key={index}>
-                        <IonCol>{index}</IonCol>
+                        <IonCol className='centerText'>{index + 1}</IonCol>
                         <IonCol>
                             <Gravatar className='userIcon' email={value.user.userName + '@gmail.com'} />
                             <br />
                             {value.user.userName}
                         </IonCol>
-                        <IonCol>{value.scoreCount}</IonCol>
-                        <IonCol>{value.flagCount}</IonCol>
+                        <IonCol className='centerText'>{value.scoreCount}</IonCol>
+                        <IonCol className='centerText'>{value.flagCount}</IonCol>
                     </IonRow>
 
                 )

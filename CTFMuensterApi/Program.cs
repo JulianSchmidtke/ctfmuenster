@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //builder.Services.AddDbContext<ModelDbContext>(options => options.UseInMemoryDatabase("items"));
 builder.Services.AddDbContext<ModelDbContext>(options => options.UseSqlite("Filename=jovel_flags.db"));
-builder.Services.AddSingleton<IDataRepository, EFData>();
+builder.Services.AddSingleton<IDataRepository, DummyData>();
 builder.Services.AddSingleton<IDataService, DataService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
