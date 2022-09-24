@@ -1,7 +1,7 @@
 import { 
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonItem, 
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel,
-  IonButton, IonRippleEffect
+  IonButton, IonRippleEffect, IonIcon
 } from '@ionic/react';
 import HeaderContainer from '../components/HeaderContainer';
 import { UserSerivce } from '../services/UserService';
@@ -9,6 +9,9 @@ import User from '../models/User';
 import React,{ useState, useEffect } from 'react';
 import Gravatar from 'react-gravatar';
 import { Guid } from "guid-typescript";
+import { flagOutline, medalOutline} from 'ionicons/icons';
+
+import "./UserTab.css"
 
 class UserTab extends React.Component {
   state = {
@@ -51,7 +54,7 @@ class UserTab extends React.Component {
         <IonContent fullscreen>
 
           <IonCard>
-            <Gravatar email={`${userDetails.user.userName}@gmail.com`} size={512} default={"identicon"} style={{aspectRatio: 1, height: "auto"}} />
+            <Gravatar email={`${userDetails.user.userName}@gmail.com`} size={512} default={"identicon"} className="user-icon" />
             <IonCardHeader>
               <IonCardSubtitle>Jovel Flag</IonCardSubtitle>
               <IonCardTitle>Persönliche Daten</IonCardTitle>
@@ -69,8 +72,8 @@ class UserTab extends React.Component {
             </IonCardHeader>
               
             <IonCardContent> 
-              Punkteanzahl: {userDetails.scoreCount | 0} <br />
-              Gefundene Flaggen: {userDetails.flagCount | 0}
+              Punkteanzahl: {userDetails.scoreCount | 0} <IonIcon icon={medalOutline}></IonIcon> <br />
+              Gefundene Flaggen: {userDetails.flagCount | 0} <IonIcon icon={flagOutline}></IonIcon>
             </IonCardContent>
           </IonCard>
 

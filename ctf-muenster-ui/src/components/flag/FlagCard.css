@@ -1,0 +1,10 @@
+.flagIconFull {
+    position: absolute;
+    right: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 5px;
+    background-color: rgb(139, 166, 255);
+    margin-right: 16px;
+    margin-top: 16px;
+}

@@ -30,10 +30,25 @@ export class UserSerivce {
     return await usersResponse.json() as User[];
   }
 
-  public static async getScores(): Promise<{user: User, scoreCount: number, flagCount: number}[]> {
-    const usersResponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score");
-    return await usersResponse.json() as {user: User, scoreCount: number, flagCount: number}[];
-  }
+  public static async getScores(period: number): Promise<{user: User, scoreCount: number, flagCount: number}[]> {
+    const today: Date = new Date();
+    let dt: Date = new Date(today);
+    console.log('first' + dt);
+    
+
+    let scoreReponse: Response;
+    if(period === 0){
+      scoreReponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score");
+    } else {
+      dt.setDate(dt.getDate() - (period));
+      console.log(dt);
+      dt.setHours(0, 0, 0, 0);
+      console.log(dt);
+      scoreReponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score?since=" + dt);
+    }
+      
+      return await scoreReponse.json() as {user: User, scoreCount: number, flagCount: number}[];
+    }
 
   //public getAve
 }
