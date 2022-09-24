@@ -9,8 +9,6 @@ import { Icon } from './Icon';
 import { Guid } from 'guid-typescript'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 L.Marker.prototype.options.icon = Icon;
 
@@ -40,6 +38,18 @@ class MapControl extends React.Component<MapProps, MapState>{
   }
 
   componentDidMount(): void {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.watchPosition(function(position) {
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+        this.setState({
+          lng_pos: position.coords.longitude,
+          lat_pos: position.coords.latitude
+        });
+      });
+    } else {
+      console.log("Not Available");
+    }
     let flagId = this.props.match.params.id;
     this.updateFlag(flagId)
   }
@@ -60,22 +70,16 @@ class MapControl extends React.Component<MapProps, MapState>{
 
   render(): React.ReactNode {
     var { lng_pos, lat_pos, zoom, flag } = this.state
-    if (!flag) {
-      return (
-        <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer >
-      )
-    }
 
     return (
       <MapContainer style={{ height: "60%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[flag.location.longitude, flag.location.latitude]} ></Marker>
+        {flag && <Marker position={[flag.location.longitude, flag.location.latitude]} ></Marker>}
+        { lng_pos && lat_pos &&
+          <Marker position={[lng_pos, lat_pos]} ></Marker>
+        }
 
       </MapContainer >
     )
