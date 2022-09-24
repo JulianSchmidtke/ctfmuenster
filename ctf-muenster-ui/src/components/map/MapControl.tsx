@@ -14,8 +14,10 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonItem,
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel,
-  IonButton, IonRippleEffect, IonIcon, IonChip, IonAlert
+  IonButton, IonRippleEffect, IonIcon, IonChip, IonAlert, IonButtons, IonRedirect
 } from '@ionic/react';
+import { ellipsisVertical } from 'ionicons/icons';
+
 
 const FlagIcon = MsFlagIcon
 L.Marker.prototype.options.icon = CircleIcon;
@@ -28,6 +30,8 @@ type MapState = {
   lat_pos: number;
   zoom: number;
   flag: Flag | undefined;
+  showAlert: boolean;
+  captured:boolean;
 }
 
 class MapControl extends React.Component<MapProps, MapState>{
@@ -35,7 +39,9 @@ class MapControl extends React.Component<MapProps, MapState>{
     lng_pos: 51.9503535,
     lat_pos: 7.638635,
     zoom: 12,
-    flag: undefined
+    flag: undefined,
+    showAlert: false,
+    captured:false
   }
 
   componentDidUpdate(prevProps: Readonly<MapProps>, prevState: Readonly<MapState>, snapshot?: any): void {
@@ -93,7 +99,8 @@ class MapControl extends React.Component<MapProps, MapState>{
   }
 
   render(): React.ReactNode {
-    var { lng_pos, lat_pos, zoom, flag } = this.state
+    var { lng_pos, lat_pos, zoom, flag, showAlert, captured } = this.state
+
     if (!flag) {
       return (
         <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
@@ -110,19 +117,25 @@ class MapControl extends React.Component<MapProps, MapState>{
     let distance = this.calcDistance(lng_pos, flag.location.longitude, lat_pos, flag.location.latitude);
     console.log(distance)
 
+    if(flag && !captured && distance < 2000){
+      this.setState({showAlert: true})
+    }
+
     return (
       <>
         <IonAlert
-          isOpen={distance < 20}
+          isOpen={showAlert}
           onDidDismiss={() => {
+            this.setState({showAlert: false, captured:true})
             FlagService.captureFlag(flag)
-            this.setState({ flag: undefined })
+            this.props.history.push("/history");
           }
           }
           header="Flagge gefunden"
           message={flag.flagName}
           buttons={['Sammeln']}
         />
+
         <div style={{ height: "75%" }}>
           <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
             <TileLayer
@@ -136,12 +149,19 @@ class MapControl extends React.Component<MapProps, MapState>{
         </div>
         <IonCard>
           <IonCardHeader>
+            <IonButtons style={{ float: "right" }}>
+              <IonButton>
+                <IonIcon icon={ellipsisVertical}></IonIcon>
+              </IonButton>
+            </IonButtons>
             <IonCardSubtitle>Jovel Flag</IonCardSubtitle>
             <IonCardTitle>{flag.flagName}</IonCardTitle>
           </IonCardHeader>
 
           <IonCardContent>
-            {flag.description} <br />
+            <div className='info-text'>
+              {flag.description}
+            </div>
             Verfügbar bis: {flag.dateTimeEndActive.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' })} <br />
             {
               flag.tags.map(t => {

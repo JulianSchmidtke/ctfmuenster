@@ -17,7 +17,7 @@ const HistoryTab: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const userFlags: UserFlag[] = await UserSerivce.getUserFlags(Guid.parse("e59871b2-5970-4f04-b1cd-42a0796a5279"))
+      const userFlags: UserFlag[] = await UserSerivce.getUserFlags(UserSerivce.getStdUserId())
       console.log(userFlags)
       let historyEntryControlsTemp: JSX.Element[] = [];
 

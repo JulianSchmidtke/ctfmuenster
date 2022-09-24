@@ -33,7 +33,11 @@ export class FlagService {
         let body = { "id": flag.id }
 
         await fetch(`https://app-ctfmuenster-api2.azurewebsites.net/user/${userId}/addflag`, {
-            body: JSON.stringify(body)
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            },
         })
     }
 }

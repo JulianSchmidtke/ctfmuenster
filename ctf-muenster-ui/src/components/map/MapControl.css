@@ -1,1 +1,9 @@
 @import '~leaflet/dist/leaflet.css';
+
+.info-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
