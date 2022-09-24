@@ -29,7 +29,7 @@ function Item(data: any) {
           <IonRow key={index} className="col-border">
             <IonCol className='centerText'>#{index + 1}</IonCol>
             <IonCol>
-              <Gravatar className='userIcon' email={value.user.userName + '@gmail.com'} default={"identicon"}/>
+              <Gravatar className='userIcon' email={value.user.id + '@gmail.com'} default={"identicon"}/>
             </IonCol>
             <IonCol className='centerText'>{value.user.userName}</IonCol>
             <IonCol className='centerText'>{value.scoreCount} <IonIcon icon={medalOutline}></IonIcon></IonCol>

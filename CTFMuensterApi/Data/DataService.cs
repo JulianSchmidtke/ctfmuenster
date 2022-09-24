@@ -36,8 +36,11 @@ namespace CTFMuensterApi.Data
             return data.GetFlags().Where(x => dateTimeOffset > x.DateTimeStartActive && dateTimeOffset < x.DateTimeEndActive);
         }
 
-        public IEnumerable<Flag> GetFlags()
+        public IEnumerable<Flag> GetFlags(bool? active)
         {
+            if(active ?? false) {
+                return data.GetFlags().Where(x => x.DateTimeStartActive <= DateTimeOffset.Now && DateTimeOffset.Now <= x.DateTimeEndActive);
+            }
             return data.GetFlags();
         }
 

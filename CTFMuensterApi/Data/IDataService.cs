@@ -14,7 +14,7 @@ namespace CTFMuensterApi.Data {
 
         public Flag GetFlag(DateTimeOffset dateTimeOffset);
 
-        public IEnumerable<Flag> GetFlags();
+        public IEnumerable<Flag> GetFlags(bool? active);
 
         public IEnumerable<UserFlag> GetFlagsPerUser(Guid userId);
 

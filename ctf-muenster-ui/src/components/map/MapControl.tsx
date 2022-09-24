@@ -9,6 +9,13 @@ import { Icon } from './Icon';
 import { Guid } from 'guid-typescript'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import {
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonItem,
+  IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel,
+  IonButton, IonRippleEffect, IonIcon, IonChip
+} from '@ionic/react';
 
 L.Marker.prototype.options.icon = Icon;
 
@@ -39,7 +46,7 @@ class MapControl extends React.Component<MapProps, MapState>{
 
   componentDidMount(): void {
     if ("geolocation" in navigator) {
-      navigator.geolocation.watchPosition(function(position) {
+      navigator.geolocation.watchPosition(function (position) {
         console.log("Latitude is :", position.coords.latitude);
         console.log("Longitude is :", position.coords.longitude);
         this.setState({
@@ -58,7 +65,8 @@ class MapControl extends React.Component<MapProps, MapState>{
     if (flagId && Guid.isGuid(flagId)) {
       FlagService.getFlag(flagId).then(flagObj => {
         this.setState({
-          flag: flagObj
+          flag: flagObj,
+          zoom: 12
         })
       })
     } else {
@@ -71,17 +79,53 @@ class MapControl extends React.Component<MapProps, MapState>{
   render(): React.ReactNode {
     var { lng_pos, lat_pos, zoom, flag } = this.state
 
-    return (
-      <MapContainer style={{ height: "60%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {flag && <Marker position={[flag.location.longitude, flag.location.latitude]} ></Marker>}
-        { lng_pos && lat_pos &&
-          <Marker position={[lng_pos, lat_pos]} ></Marker>
-        }
 
-      </MapContainer >
+    if (!flag) {
+
+      return (
+        <MapContainer style={{ height: "1000%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {lng_pos && lat_pos &&
+            <Marker position={[lng_pos, lat_pos]} ></Marker>
+          }
+        </MapContainer>
+      )
+    }
+
+    return (
+      <>
+        <div style={{ height: "75%" }}>
+          <MapContainer style={{ height: "100%", width: "100vw" }} center={[lng_pos, lat_pos]} zoom={zoom} >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[flag.location.longitude, flag.location.latitude]} ></Marker>
+            {lng_pos && lat_pos &&
+              <Marker position={[lng_pos, lat_pos]} ></Marker>
+            }
+          </MapContainer >
+        </div>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardSubtitle>Jovel Flag</IonCardSubtitle>
+            <IonCardTitle>{flag.flagName}</IonCardTitle>
+          </IonCardHeader>
+
+          <IonCardContent>
+            {flag.description} <br />
+            Verfügbar bis: {flag.dateTimeEndActive.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' })} <br />
+            {
+              flag.tags.map(t => {
+                return (
+                  <IonChip key={t.id.toString()}>{t.name}</IonChip>
+                );
+              })
+            }
+          </IonCardContent>
+        </IonCard>
+      </>
     )
   }
 };

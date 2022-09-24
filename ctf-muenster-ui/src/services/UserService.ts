@@ -40,7 +40,6 @@ export class UserSerivce {
       scoreReponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score");
     } else {
       dt.setDate(dt.getDate() - (period));
-      dt.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})
       console.log(dt);
       scoreReponse = await fetch("https://app-ctfmuenster-api2.azurewebsites.net/Score?since=" + dt.toISOString().substring(0, 10));
     }
